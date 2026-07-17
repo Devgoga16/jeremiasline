@@ -1,0 +1,247 @@
+.timeline-event {
+  margin-bottom: 50px;
+  display: flex;
+  gap: 30px;
+  animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-event:hover {
+  opacity: 1;
+}
+
+.timeline-event.alternate {
+  flex-direction: row-reverse;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.timeline-event.emphasis {
+  margin-bottom: 80px;
+}
+
+.event-marker {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 1),
+    0 8px 24px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 3;
+  border: 4px solid white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.timeline-event.emphasis .event-marker {
+  width: 80px;
+  height: 80px;
+  border-width: 5px;
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 1),
+    0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.event-marker:hover {
+  transform: scale(1.15);
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 1),
+    0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.marker-inner {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-header {
+  width: 100%;
+  background: white;
+  border: none;
+  border-left: 5px solid;
+  padding: 24px 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08),
+    0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: inherit;
+  text-align: left;
+}
+
+.event-header:hover {
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.15),
+    0 0 1px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px);
+}
+
+.header-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.event-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.description-preview {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.year-badge {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, currentColor 0%, currentColor 100%);
+}
+
+.expand-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: #bdc3c7;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.event-header:hover .expand-icon {
+  color: #34495e;
+  transform: scale(1.2);
+}
+
+.event-details {
+  padding: 24px 28px;
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  border-left: 5px solid inherit;
+  border-radius: 0 12px 12px 0;
+  margin-top: -1px;
+  animation: expandDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-top: 1px solid #ecf0f1;
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.8) translateY(-10px);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+}
+
+.full-description {
+  margin: 0 0 16px 0;
+  color: #34495e;
+  line-height: 1.8;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+}
+
+.additional-details {
+  margin: 0;
+  color: #5d6d7b;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  padding: 16px;
+  background: rgba(52, 152, 219, 0.05);
+  border-left: 3px solid #3498db;
+  border-radius: 6px;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 768px) {
+  .timeline-event,
+  .timeline-event.alternate {
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .event-marker {
+    width: 50px;
+    height: 50px;
+    margin-top: 4px;
+  }
+
+  .timeline-event.emphasis .event-marker {
+    width: 65px;
+    height: 65px;
+  }
+
+  .event-header {
+    padding: 18px 20px;
+    gap: 14px;
+  }
+
+  .event-header h3 {
+    font-size: 1.15rem;
+  }
+
+  .description-preview {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 1;
+  }
+
+  .event-details {
+    padding: 18px 20px;
+  }
+
+  .full-description {
+    font-size: 0.95rem;
+  }
+}
