@@ -11,6 +11,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Reserva el espacio de la silueta para que el flex centre en el cielo, no en la pantalla completa */
+  padding-bottom: 24vh;
   background:
     radial-gradient(ellipse at 50% 100%,
       rgba(250, 130, 15, 0.80) 0%,
@@ -175,7 +177,7 @@ html, body {
 
 /* ── Contenido flotando en el cielo ── */
 .sky-content {
-  --sky-y: -10vh;
+  --sky-y: 0px;
   position: relative;
   z-index: 10;
   text-align: center;
@@ -905,7 +907,7 @@ html, body {
 /* Tablet portrait */
 @media (max-width: 768px) {
   /* Home */
-  .sky-content     { --sky-y: -6vh; padding: 0 20px; }
+  .sky-content     { padding: 0 20px; }
   .start-button    { padding: 12px 40px; }
 
   /* Header */
@@ -958,7 +960,7 @@ html, body {
 /* Mobile */
 @media (max-width: 480px) {
   /* Home */
-  .sky-content      { --sky-y: -3vh; padding: 0 14px; }
+  .sky-content      { padding: 0 14px; }
   .home-main-title  { font-size: clamp(1rem, 4vw, 1.4rem); }
   .hebrew-title     { margin-bottom: 12px; }
   .home-description { font-size: 0.9rem; margin-bottom: 16px; }
