@@ -2,17 +2,25 @@
 html, body {
   height: 100%;
   overflow: hidden;
+  /* Fondo oscuro para evitar flash blanco antes de que cargue React */
+  background: #060308;
+}
+
+#root {
+  height: 100%;
 }
 
 /* ─── HOME SCREEN — Amanecer Dorado ─────────────────────────── */
 .home-screen {
   width: 100vw;
   height: 100vh;
+  height: 100dvh; /* iOS Safari: excluye la barra del navegador */
   display: flex;
   align-items: center;
   justify-content: center;
   /* Reserva el espacio de la silueta para que el flex centre en el cielo, no en la pantalla completa */
   padding-bottom: 24vh;
+  padding-bottom: 24dvh;
   background:
     radial-gradient(ellipse at 50% 100%,
       rgba(250, 130, 15, 0.80) 0%,
@@ -330,6 +338,7 @@ html, body {
 .modern-timeline {
   width: 100vw;
   height: 100vh;
+  height: 100dvh; /* iOS Safari: excluye la barra del navegador */
   background: #0e0803;
   position: relative;
   overflow: hidden;
