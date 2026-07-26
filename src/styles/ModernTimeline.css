@@ -915,18 +915,26 @@ html, body {
   .close-button    { width: 38px; height: 38px; }
   .page-counter    { width: 38px; height: 38px; font-size: 0.95rem; }
 
-  /* Book page — padding lateral reserva espacio para los botones */
-  .book-page { padding: 14px 48px; }
-  .page-content {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  /* Book page: stretch en lugar de center para que page-content ocupe todo */
+  .book-page {
+    padding: 14px 48px;
+    align-items: stretch;
   }
 
-  /* Imagen con altura fija para que no colapse en columna única */
+  /* Grid de una columna con filas explícitas:
+     imagen fija arriba, texto ocupa el resto — así nunca cambia de altura */
+  .page-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 32vh 1fr;
+    gap: 14px;
+    height: 100%;
+  }
+
+  /* Imagen ocupa toda la fila definida */
   .event-image-container {
-    height: 32vh;
-    min-height: 160px;
-    max-height: 240px;
+    height: 100%;
+    min-height: unset;
+    max-height: unset;
     width: 100%;
   }
 
@@ -966,19 +974,15 @@ html, body {
 
   /* Book page */
   .book-page { padding: 10px 42px; }
-  .page-content { gap: 10px; }
+  .page-content {
+    grid-template-rows: 28vh 1fr;
+    gap: 10px;
+  }
 
   /* Botones de navegación: más pequeños y pegados al borde */
-  .page-button          { width: 36px; height: 36px; }
+  .page-button           { width: 36px; height: 36px; }
   .page-button.prev-page { left: 4px; }
   .page-button.next-page { right: 4px; }
-
-  /* Imagen más compacta */
-  .event-image-container {
-    height: 28vh;
-    min-height: 140px;
-    max-height: 200px;
-  }
 
   /* Texto */
   .event-year  { font-size: 1.25rem; margin-bottom: 2px; }
@@ -1006,9 +1010,9 @@ html, body {
 
 /* Teléfonos pequeños */
 @media (max-width: 360px) {
-  .book-page { padding: 8px 38px; }
-  .tab-btn   { padding: 7px 4px; font-size: 0.52rem; letter-spacing: 0.5px; }
-  .event-image-container { height: 24vh; min-height: 120px; }
+  .book-page   { padding: 8px 38px; }
+  .page-content { grid-template-rows: 24vh 1fr; }
+  .tab-btn     { padding: 7px 4px; font-size: 0.52rem; letter-spacing: 0.5px; }
   .event-year  { font-size: 1.1rem; }
   .event-title { font-size: 0.8rem; }
 }
