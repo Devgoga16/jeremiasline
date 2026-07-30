@@ -969,12 +969,14 @@ html, body {
 /* Mobile */
 @media (max-width: 480px) {
   /* Home */
-  .sky-content      { padding: 0 14px; }
-  .home-main-title  { font-size: clamp(1rem, 4vw, 1.4rem); }
-  .hebrew-title     { margin-bottom: 12px; }
-  .home-description { font-size: 0.9rem; margin-bottom: 16px; }
-  .home-dates       { margin-bottom: 22px; }
-  .start-button     { padding: 11px 32px; letter-spacing: 4px; font-size: 0.68rem; }
+  .sky-content       { padding: 0 24px; }
+  .hebrew-title      { font-size: 0.88rem; letter-spacing: 5px; margin-bottom: 14px; }
+  .home-main-title   { font-size: clamp(1.9rem, 9vw, 2.3rem); line-height: 1.3; }
+  .sky-divider       { margin: 0 0 16px; }
+  .home-description  { font-size: 1.05rem; line-height: 1.65; margin-bottom: 18px; }
+  .home-dates        { margin-bottom: 26px; }
+  .home-date-label   { font-size: 0.85rem; letter-spacing: 2px; }
+  .start-button      { padding: 13px 44px; letter-spacing: 4px; font-size: 0.75rem; }
 
   /* Header */
   .timeline-header { padding: 10px 12px; gap: 8px; }
