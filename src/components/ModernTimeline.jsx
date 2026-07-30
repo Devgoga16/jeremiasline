@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Home, ChevronLeft, ChevronRight } from 'lucide-react';
 import '../styles/ModernTimeline.css';
 
@@ -14,6 +14,13 @@ export function ModernTimeline({ events }) {
   const [showHome, setShowHome] = useState(true);
   const [pageFlip, setPageFlip] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
+  const [fontSize, setFontSize] = useState(() => localStorage.getItem('fs') || '3');
+  const [showFsPanel, setShowFsPanel] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.dataset.fs = fontSize;
+    localStorage.setItem('fs', fontSize);
+  }, [fontSize]);
 
   const currentEvent = events[activeIndex];
 
@@ -99,10 +106,50 @@ export function ModernTimeline({ events }) {
           <h2>El Libro de Jeremías</h2>
           <p>Evento {activeIndex + 1} de {events.length}</p>
         </div>
-        <div className="page-counter">
-          <span>{String(activeIndex + 1).padStart(2, '0')}</span>
+        <div className="hdr-right">
+          <div className="page-counter">
+            <span>{String(activeIndex + 1).padStart(2, '0')}</span>
+          </div>
+          <button
+            className={`fs-btn ${showFsPanel || fontSize !== '3' ? 'active' : ''}`}
+            onClick={() => setShowFsPanel(v => !v)}
+            title="Tamaño del texto"
+          >
+            Aa
+            {fontSize !== '3' && <span className="fs-pip" />}
+          </button>
         </div>
       </header>
+
+      {showFsPanel && (
+        <div className="fs-overlay" onClick={() => setShowFsPanel(false)}>
+          <div className="fs-panel" onClick={e => e.stopPropagation()}>
+            <div className="fs-handle" />
+            <div className="fs-panel-label">Tamaño del texto</div>
+            <div className="fs-options">
+              {[
+                { level: '1', px: 9 },
+                { level: '2', px: 13 },
+                { level: '3', px: 17 },
+                { level: '4', px: 22 },
+                { level: '5', px: 28 },
+              ].map(({ level, px }) => (
+                <button
+                  key={level}
+                  className={`fs-option ${fontSize === level ? 'active' : ''}`}
+                  onClick={() => setFontSize(level)}
+                >
+                  <span className="fs-option-a" style={{ fontSize: px }}>A</span>
+                  <span className="fs-option-dot" />
+                </button>
+              ))}
+            </div>
+            <div className="fs-preview">
+              "{currentEvent.keyText?.slice(0, 60)}…"
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className={`book-page ${pageFlip === 1 ? 'flip-right' : ''} ${pageFlip === -1 ? 'flip-left' : ''}`}>
         <div className="page-content">
