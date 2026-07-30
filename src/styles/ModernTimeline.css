@@ -939,21 +939,27 @@ html[data-fs="5"] { font-size: 21px; }
     align-items: stretch;
   }
 
-  /* Grid de una columna con filas explícitas:
-     imagen fija arriba, texto ocupa el resto — así nunca cambia de altura */
+  /* Grid de una columna: imagen se auto-dimensiona, texto ocupa el resto */
   .page-content {
     grid-template-columns: 1fr;
-    grid-template-rows: 32vh 1fr;
+    grid-template-rows: auto 1fr;
     gap: 14px;
     height: 100%;
   }
 
-  /* Imagen ocupa toda la fila definida */
+  /* Imagen con altura explícita + transición para colapso al hacer scroll */
   .event-image-container {
-    height: 100%;
+    height: 32vh;
     min-height: unset;
     max-height: unset;
     width: 100%;
+    overflow: hidden;
+    transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  .img-collapsed .event-image-container {
+    height: 60px;
   }
 
   /* Texto */
@@ -994,10 +1000,9 @@ html[data-fs="5"] { font-size: 21px; }
 
   /* Book page */
   .book-page { padding: 10px 42px; }
-  .page-content {
-    grid-template-rows: 28vh 1fr;
-    gap: 10px;
-  }
+  .page-content { gap: 10px; }
+  .event-image-container { height: 28vh; }
+  .img-collapsed .event-image-container { height: 52px; }
 
   /* Botones de navegación: más pequeños y pegados al borde */
   .page-button           { width: 36px; height: 36px; }
@@ -1039,7 +1044,7 @@ html[data-fs="5"] { font-size: 21px; }
 /* Teléfonos pequeños */
 @media (max-width: 360px) {
   .book-page    { padding: 8px 38px; }
-  .page-content { grid-template-rows: 24vh 1fr; }
+  .event-image-container { height: 24vh; }
   .tab-btn      { padding: 8px 5px; font-size: 0.68rem; letter-spacing: 0.5px; }
   .event-year   { font-size: 1.2rem; }
   .event-title  { font-size: 0.95rem; }

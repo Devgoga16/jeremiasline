@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Home, ChevronLeft, ChevronRight } from 'lucide-react';
 import '../styles/ModernTimeline.css';
 
@@ -16,6 +16,8 @@ export function ModernTimeline({ events }) {
   const [activeTab, setActiveTab] = useState(0);
   const [fontSize, setFontSize] = useState(() => localStorage.getItem('fs') || '3');
   const [showFsPanel, setShowFsPanel] = useState(false);
+  const [imgCollapsed, setImgCollapsed] = useState(false);
+  const tabContentRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.dataset.fs = fontSize;
@@ -30,6 +32,8 @@ export function ModernTimeline({ events }) {
       setActiveIndex(newIndex);
       setActiveTab(0);
       setPageFlip(0);
+      setImgCollapsed(false);
+      if (tabContentRef.current) tabContentRef.current.scrollTop = 0;
     }, 300);
   };
 
@@ -43,6 +47,10 @@ export function ModernTimeline({ events }) {
 
   const handleJump = (index) => {
     if (index !== activeIndex) navigate(index, index > activeIndex ? 1 : -1);
+  };
+
+  const handleTabScroll = (e) => {
+    setImgCollapsed(e.currentTarget.scrollTop > 40);
   };
 
   const yearLabel = currentEvent.endYear
@@ -152,7 +160,7 @@ export function ModernTimeline({ events }) {
       )}
 
       <div className={`book-page ${pageFlip === 1 ? 'flip-right' : ''} ${pageFlip === -1 ? 'flip-left' : ''}`}>
-        <div className="page-content">
+        <div className={`page-content ${imgCollapsed ? 'img-collapsed' : ''}`}>
 
           {/* Left: Image */}
           <div className="event-image-container">
@@ -177,7 +185,7 @@ export function ModernTimeline({ events }) {
               ))}
             </div>
 
-            <div className="tab-content">
+            <div className="tab-content" ref={tabContentRef} onScroll={handleTabScroll}>
 
               {activeTab === 0 && (
                 <div className="tab-panel">
