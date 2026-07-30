@@ -530,7 +530,7 @@ html, body {
 .event-description {
   font-family: 'Crimson Text', Georgia, serif;
   font-size: 1rem;
-  color: #8a7040;
+  color: #b09860;
   line-height: 1.75;
   margin: 0;
 }
@@ -570,7 +570,7 @@ html, body {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #5a4828;
+  color: #8a7038;
   cursor: pointer;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
@@ -579,7 +579,7 @@ html, body {
 }
 
 .tab-btn:hover {
-  color: #a08030;
+  color: #b8902e;
 }
 
 .tab-btn.active {
@@ -618,14 +618,14 @@ html, body {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #8a6a20;
+  color: #a08030;
   margin: 0;
 }
 
 .section-block p {
   font-family: 'Crimson Text', Georgia, serif;
   font-size: 0.96rem;
-  color: #8a7040;
+  color: #b09860;
   line-height: 1.75;
   margin: 0;
 }
@@ -679,7 +679,7 @@ html, body {
   background: rgba(120, 85, 10, 0.08);
   border: 1px solid rgba(180, 130, 40, 0.15);
   padding: 12px 14px;
-  color: #8a7040;
+  color: #b09860;
   line-height: 1.75;
 }
 
@@ -687,7 +687,7 @@ html, body {
 .connection-text {
   font-family: 'Crimson Text', Georgia, serif;
   font-size: 0.96rem;
-  color: #8a7040;
+  color: #b09860;
   line-height: 1.75;
   font-style: italic;
   border-left: 2px solid rgba(180, 130, 40, 0.25);
@@ -695,7 +695,7 @@ html, body {
 }
 
 .connection-text.muted {
-  color: #5a4828;
+  color: #8a7040;
 }
 
 /* Timeline Section */
@@ -995,13 +995,21 @@ html, body {
   .page-button.prev-page { left: 4px; }
   .page-button.next-page { right: 4px; }
 
-  /* Texto */
-  .event-year  { font-size: 1.25rem; margin-bottom: 2px; }
-  .event-title { font-size: 0.86rem; margin-bottom: 8px; }
+  /* Texto — tamaños mínimos legibles en mobile */
+  .event-year  { font-size: 1.5rem; margin-bottom: 2px; }
+  /* Cinzel (no Decorative) a mobile: trazos más uniformes, más legible pequeño */
+  .event-title { font-family: 'Cinzel', serif; font-size: 1.05rem; margin-bottom: 8px; }
+  .event-description { font-size: 1.05rem; }
   .tab-bar     { gap: 0; margin-bottom: 8px; }
-  .tab-btn     { padding: 8px 6px; font-size: 0.56rem; letter-spacing: 0.8px; }
-  .section-block p  { font-size: 0.9rem; }
-  .ref-list li      { font-size: 0.75rem; }
+  /* Tabs: el fix más crítico — de 9px a 12px mínimo */
+  .tab-btn     { padding: 10px 8px; font-size: 0.75rem; letter-spacing: 1px; }
+  .section-label    { font-size: 0.72rem; letter-spacing: 1.5px; }
+  .section-block p  { font-size: 1.05rem; }
+  .ref-list li      { font-size: 0.92rem; }
+  .key-text         { font-size: 1.08rem; }
+  .key-text-ref     { font-size: 0.72rem; }
+  .connection-text  { font-size: 1.05rem; }
+  .date-calc        { font-size: 1rem; }
 
   /* Timeline: ocultar años, solo mostrar el activo */
   .timeline-section    { padding: 8px 12px 10px; }
@@ -1021,9 +1029,10 @@ html, body {
 
 /* Teléfonos pequeños */
 @media (max-width: 360px) {
-  .book-page   { padding: 8px 38px; }
+  .book-page    { padding: 8px 38px; }
   .page-content { grid-template-rows: 24vh 1fr; }
-  .tab-btn     { padding: 7px 4px; font-size: 0.52rem; letter-spacing: 0.5px; }
-  .event-year  { font-size: 1.1rem; }
-  .event-title { font-size: 0.8rem; }
+  .tab-btn      { padding: 8px 5px; font-size: 0.68rem; letter-spacing: 0.5px; }
+  .event-year   { font-size: 1.2rem; }
+  .event-title  { font-size: 0.95rem; }
+  .section-block p { font-size: 1rem; }
 }
