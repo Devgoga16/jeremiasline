@@ -1213,13 +1213,204 @@ html[data-fs="5"] { font-size: 21px; }
   font-size: 1rem;
 }
 
+/* ── Botón de tema (sol / luna) ── */
+.theme-btn {
+  background: transparent;
+  color: #6a5020;
+  border: 1px solid rgba(180, 130, 40, 0.28);
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.theme-btn:hover {
+  background: rgba(180, 130, 40, 0.10);
+  border-color: rgba(200, 155, 45, 0.55);
+  color: #c9a840;
+}
+
 /* Responsive: botón más pequeño en mobile */
 @media (max-width: 768px) {
-  .fs-btn { width: 38px; height: 38px; font-size: 0.68rem; }
+  .fs-btn    { width: 38px; height: 38px; font-size: 0.68rem; }
+  .theme-btn { width: 38px; height: 38px; }
 }
 @media (max-width: 480px) {
-  .fs-btn { width: 34px; height: 34px; font-size: 0.62rem; border-radius: 6px; }
+  .fs-btn    { width: 34px; height: 34px; font-size: 0.62rem; border-radius: 6px; }
+  .theme-btn { width: 34px; height: 34px; border-radius: 6px; }
   .hdr-right { gap: 6px; }
   .fs-panel  { padding: 12px 16px 28px; }
   .fs-options { gap: 4px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   MODO CLARO — paleta pergamino / manuscrito antiguo
+   ═══════════════════════════════════════════════════ */
+:root[data-theme="light"] .modern-timeline {
+  background: #f5edda;
+}
+
+:root[data-theme="light"] .timeline-header {
+  background: #ede0c0;
+  border-bottom-color: rgba(139, 96, 16, 0.22);
+}
+
+:root[data-theme="light"] .close-button {
+  color: #7a5510;
+  border-color: rgba(139, 96, 16, 0.38);
+}
+:root[data-theme="light"] .close-button:hover {
+  background: rgba(139, 96, 16, 0.10);
+  border-color: rgba(139, 96, 16, 0.65);
+  color: #5a3e0a;
+}
+
+:root[data-theme="light"] .book-title h2 { color: #4a3008; }
+:root[data-theme="light"] .book-title p  { color: #8a7040; }
+
+:root[data-theme="light"] .page-counter {
+  color: #8a6010;
+  border-color: rgba(139, 96, 16, 0.38);
+}
+
+:root[data-theme="light"] .theme-btn {
+  color: #7a5510;
+  border-color: rgba(139, 96, 16, 0.28);
+}
+:root[data-theme="light"] .theme-btn:hover {
+  background: rgba(139, 96, 16, 0.10);
+  color: #5a3e0a;
+}
+
+:root[data-theme="light"] .fs-btn {
+  color: #7a5510;
+  border-color: rgba(139, 96, 16, 0.28);
+}
+:root[data-theme="light"] .fs-btn:hover {
+  background: rgba(139, 96, 16, 0.10);
+  color: #5a3e0a;
+}
+:root[data-theme="light"] .fs-btn.active {
+  color: #7a5510;
+  border-color: rgba(139, 96, 16, 0.60);
+  background: rgba(139, 96, 16, 0.10);
+}
+
+:root[data-theme="light"] .book-page { background: transparent; }
+
+:root[data-theme="light"] .event-year  { color: #8a6010; }
+:root[data-theme="light"] .event-title { color: #2e1e06; }
+
+:root[data-theme="light"] .key-event-badge {
+  background: rgba(139, 96, 16, 0.10);
+  color: #7a5510;
+  border-color: rgba(139, 96, 16, 0.40);
+}
+
+:root[data-theme="light"] .tab-bar {
+  border-bottom-color: rgba(139, 96, 16, 0.22);
+}
+:root[data-theme="light"] .tab-btn       { color: #8a7040; }
+:root[data-theme="light"] .tab-btn:hover { color: #6a5020; }
+:root[data-theme="light"] .tab-btn.active {
+  color: #7a5510;
+  border-bottom-color: #7a5510;
+}
+
+:root[data-theme="light"] .event-description,
+:root[data-theme="light"] .section-block p { color: #4a3010; }
+
+:root[data-theme="light"] .section-label { color: #7a5510; }
+
+:root[data-theme="light"] .ref-list li { color: #7a5510; }
+
+:root[data-theme="light"] .key-text-block {
+  background: rgba(139, 96, 16, 0.07);
+  border-left-color: rgba(139, 96, 16, 0.40);
+}
+:root[data-theme="light"] .key-text     { color: #6a4808; }
+:root[data-theme="light"] .key-text-ref { color: #9a7838; }
+
+:root[data-theme="light"] .date-calc {
+  background: rgba(139, 96, 16, 0.06);
+  border-color: rgba(139, 96, 16, 0.18);
+  color: #4a3010;
+}
+
+:root[data-theme="light"] .connection-text {
+  color: #4a3010;
+  border-left-color: rgba(139, 96, 16, 0.28);
+}
+:root[data-theme="light"] .connection-text.muted { color: #8a7040; }
+
+:root[data-theme="light"] .page-button {
+  background: rgba(237, 224, 192, 0.92);
+  color: #7a6030;
+  border-color: rgba(139, 96, 16, 0.28);
+}
+:root[data-theme="light"] .page-button:hover:not(:disabled) {
+  background: rgba(139, 96, 16, 0.10);
+  color: #5a3e0a;
+  border-color: rgba(139, 96, 16, 0.55);
+}
+
+:root[data-theme="light"] .timeline-section {
+  background: #ede0c0;
+  border-top-color: rgba(139, 96, 16, 0.22);
+}
+:root[data-theme="light"] .timeline-title    { color: #8a7040; }
+:root[data-theme="light"] .timeline-reminder { color: #7a6030; }
+:root[data-theme="light"] .timeline-reminder strong { color: #7a5510; }
+:root[data-theme="light"] .timeline-year     { color: #8a7040; }
+:root[data-theme="light"] .timeline-item.active .timeline-year { color: #7a5510; }
+:root[data-theme="light"] .timeline-events-row::before {
+  background: linear-gradient(to right, transparent, rgba(139, 96, 16, 0.30), transparent);
+}
+:root[data-theme="light"] .timeline-dot {
+  border-color: rgba(237, 224, 192, 0.90);
+  box-shadow: 0 0 0 1px rgba(139, 96, 16, 0.25);
+}
+:root[data-theme="light"] .timeline-item.active .timeline-dot {
+  box-shadow: 0 0 0 2px rgba(139, 96, 16, 0.35), 0 0 10px rgba(139, 96, 16, 0.20);
+}
+
+:root[data-theme="light"] .fs-overlay {
+  background: rgba(245, 237, 218, 0.65);
+}
+:root[data-theme="light"] .fs-panel {
+  background: #ede0c0;
+  border-top-color: rgba(139, 96, 16, 0.28);
+}
+:root[data-theme="light"] .fs-handle { background: rgba(139, 96, 16, 0.28); }
+:root[data-theme="light"] .fs-panel-label { color: #8a7040; }
+:root[data-theme="light"] .fs-option-a    { color: #8a7040; }
+:root[data-theme="light"] .fs-option.active .fs-option-a { color: #7a5510; }
+:root[data-theme="light"] .fs-option-dot  { border-color: rgba(139, 96, 16, 0.32); }
+:root[data-theme="light"] .fs-option.active .fs-option-dot {
+  background: #7a5510;
+  border-color: #7a5510;
+}
+:root[data-theme="light"] .fs-option:hover {
+  background: rgba(139, 96, 16, 0.07);
+  border-color: rgba(139, 96, 16, 0.22);
+}
+:root[data-theme="light"] .fs-option.active {
+  border-color: rgba(139, 96, 16, 0.52);
+  background: rgba(139, 96, 16, 0.10);
+}
+:root[data-theme="light"] .fs-preview {
+  border-top-color: rgba(139, 96, 16, 0.14);
+  color: #8a7040;
+}
+
+/* Scrollbars en modo claro */
+:root[data-theme="light"] .tab-content::-webkit-scrollbar-thumb {
+  background: rgba(139, 96, 16, 0.22);
+}
+:root[data-theme="light"] .event-text-content::-webkit-scrollbar-thumb {
+  background: rgba(139, 96, 16, 0.22);
 }

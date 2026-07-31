@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Home, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, ChevronLeft, ChevronRight, Sun, Moon } from 'lucide-react';
 import '../styles/ModernTimeline.css';
 
 const TABS = [
@@ -16,12 +16,22 @@ export function ModernTimeline({ events }) {
   const [activeTab, setActiveTab] = useState(0);
   const [fontSize, setFontSize] = useState(() => localStorage.getItem('fs') || '3');
   const [showFsPanel, setShowFsPanel] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved;
+    return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  });
   const tabContentRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.dataset.fs = fontSize;
     localStorage.setItem('fs', fontSize);
   }, [fontSize]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const currentEvent = events[activeIndex];
 
@@ -103,6 +113,13 @@ export function ModernTimeline({ events }) {
           <div className="page-counter">
             <span>{String(activeIndex + 1).padStart(2, '0')}</span>
           </div>
+          <button
+            className="theme-btn"
+            onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
+            title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+          >
+            {theme === 'dark' ? <Sun size={16} strokeWidth={2} /> : <Moon size={16} strokeWidth={2} />}
+          </button>
           <button
             className={`fs-btn ${showFsPanel || fontSize !== '3' ? 'active' : ''}`}
             onClick={() => setShowFsPanel(v => !v)}
