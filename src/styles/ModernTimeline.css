@@ -474,7 +474,7 @@ html[data-fs="5"] { font-size: 21px; }
 
 .page-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.65fr 1fr;
   gap: 60px;
   align-items: stretch;
   width: 100%;
@@ -956,7 +956,7 @@ html[data-fs="5"] { font-size: 21px; }
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 32vh;
+    height: 22vh;
   }
 
   /* El img dentro ocupa todo el contenedor */
@@ -1011,7 +1011,7 @@ html[data-fs="5"] { font-size: 21px; }
   /* Book page */
   .book-page { padding: 10px 42px; }
   .page-content { gap: 10px; }
-  .event-image-container { height: 28vh; }
+  .event-image-container { height: 20vh; }
 
   /* Botones de navegación: más pequeños y pegados al borde */
   .page-button           { width: 36px; height: 36px; }
@@ -1053,7 +1053,7 @@ html[data-fs="5"] { font-size: 21px; }
 /* Teléfonos pequeños */
 @media (max-width: 360px) {
   .book-page    { padding: 8px 38px; }
-  .event-image-container { height: 24vh; }
+  .event-image-container { height: 17vh; }
   .tab-btn      { padding: 8px 5px; font-size: 0.68rem; letter-spacing: 0.5px; }
   .event-year   { font-size: 1.2rem; }
   .event-title  { font-size: 0.95rem; }
