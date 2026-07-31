@@ -49,9 +49,13 @@ export function ModernTimeline({ events }) {
     if (index !== activeIndex) navigate(index, index > activeIndex ? 1 : -1);
   };
 
-  const handleTabScroll = (e) => {
-    setImgCollapsed(e.currentTarget.scrollTop > 40);
-  };
+  useEffect(() => {
+    const el = tabContentRef.current;
+    if (!el) return;
+    const onScroll = () => setImgCollapsed(el.scrollTop > 40);
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => el.removeEventListener('scroll', onScroll);
+  }, [activeIndex, activeTab, showHome]);
 
   const yearLabel = currentEvent.endYear
     ? `${currentEvent.year}–${currentEvent.endYear} a.C.`
@@ -185,7 +189,7 @@ export function ModernTimeline({ events }) {
               ))}
             </div>
 
-            <div className="tab-content" ref={tabContentRef} onScroll={handleTabScroll}>
+            <div className="tab-content" ref={tabContentRef}>
 
               {activeTab === 0 && (
                 <div className="tab-panel">
