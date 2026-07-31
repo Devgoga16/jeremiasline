@@ -52,7 +52,11 @@ export function ModernTimeline({ events }) {
   useEffect(() => {
     const el = tabContentRef.current;
     if (!el) return;
-    const onScroll = () => setImgCollapsed(el.scrollTop > 40);
+    const onScroll = () => {
+      if (el.scrollTop > 40) setImgCollapsed(true);
+      else if (el.scrollTop < 4) setImgCollapsed(false);
+      // entre 4–40px: mantiene el estado actual para evitar oscilación
+    };
     el.addEventListener('scroll', onScroll, { passive: true });
     return () => el.removeEventListener('scroll', onScroll);
   }, [activeIndex, activeTab, showHome]);
