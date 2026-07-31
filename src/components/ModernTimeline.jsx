@@ -16,7 +16,6 @@ export function ModernTimeline({ events }) {
   const [activeTab, setActiveTab] = useState(0);
   const [fontSize, setFontSize] = useState(() => localStorage.getItem('fs') || '3');
   const [showFsPanel, setShowFsPanel] = useState(false);
-  const [imgCollapsed, setImgCollapsed] = useState(false);
   const tabContentRef = useRef(null);
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export function ModernTimeline({ events }) {
       setActiveIndex(newIndex);
       setActiveTab(0);
       setPageFlip(0);
-      setImgCollapsed(false);
       if (tabContentRef.current) tabContentRef.current.scrollTop = 0;
     }, 300);
   };
@@ -49,18 +47,6 @@ export function ModernTimeline({ events }) {
     if (index !== activeIndex) navigate(index, index > activeIndex ? 1 : -1);
   };
 
-  useEffect(() => {
-    const el = tabContentRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      if (el.scrollTop > 40) setImgCollapsed(true);
-      else if (el.scrollTop < 4) setImgCollapsed(false);
-      // entre 4–40px: mantiene el estado actual para evitar oscilación
-    };
-    el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, [activeIndex, activeTab, showHome]);
-
   const yearLabel = currentEvent.endYear
     ? `${currentEvent.year}–${currentEvent.endYear} a.C.`
     : `${currentEvent.year} a.C.`;
@@ -68,19 +54,10 @@ export function ModernTimeline({ events }) {
   if (showHome) {
     return (
       <div className="home-screen">
-        {/* Estrellas */}
         <div className="sky-stars" />
-
-        {/* Resplandor del amanecer desde el horizonte */}
         <div className="sky-glow" />
-
-        {/* Silueta de Jerusalén */}
         <div className="jerusalem-silhouette" />
-
-        {/* Línea dorada del horizonte */}
         <div className="sky-horizon" />
-
-        {/* Contenido flotando en el cielo */}
         <div className="sky-content">
           <div className="hebrew-title">סֵפֶר יִרְמְיָהוּ</div>
 
@@ -168,15 +145,15 @@ export function ModernTimeline({ events }) {
       )}
 
       <div className={`book-page ${pageFlip === 1 ? 'flip-right' : ''} ${pageFlip === -1 ? 'flip-left' : ''}`}>
-        <div className={`page-content ${imgCollapsed ? 'img-collapsed' : ''}`}>
+        <div className="page-content">
 
-          {/* Left: Image */}
+          {/* Image */}
           <div className="event-image-container">
             <img src={currentEvent.image} alt={currentEvent.title} className="event-image" />
             {currentEvent.emphasis && <div className="key-event-badge">Evento Clave</div>}
           </div>
 
-          {/* Right: Tabbed content */}
+          {/* Tabbed content */}
           <div className="event-text-content">
             <div className="event-year">{yearLabel}</div>
             <h2 className="event-title">{currentEvent.title}</h2>

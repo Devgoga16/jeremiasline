@@ -950,18 +950,13 @@ html[data-fs="5"] { font-size: 21px; }
     max-width: 100%;
   }
 
-  /* La imagen tiene height explícito — el grid auto row lo respeta */
+  /* Imagen: altura fija, grid auto row la respeta */
   .event-image-container {
     display: block;
     position: relative;
     width: 100%;
     overflow: hidden;
     height: 32vh;
-    transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .img-collapsed .event-image-container {
-    height: 60px;
   }
 
   /* El img dentro ocupa todo el contenedor */
@@ -1017,7 +1012,6 @@ html[data-fs="5"] { font-size: 21px; }
   .book-page { padding: 10px 42px; }
   .page-content { gap: 10px; }
   .event-image-container { height: 28vh; }
-  .img-collapsed .event-image-container { height: 52px; }
 
   /* Botones de navegación: más pequeños y pegados al borde */
   .page-button           { width: 36px; height: 36px; }
