@@ -939,9 +939,10 @@ html[data-fs="5"] { font-size: 21px; }
     align-items: stretch;
   }
 
-  /* Grid de una columna: el row auto se ajusta al height del item */
+  /* Grid de una columna: override de las 2 columnas del desktop */
   .page-content {
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     gap: 14px;
     height: 100%;
